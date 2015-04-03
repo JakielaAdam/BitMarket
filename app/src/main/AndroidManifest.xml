@@ -22,6 +22,10 @@
             android:name=".MarketActivity"
             android:label="@string/title_activity_market" >
         </activity>
+        <activity
+            android:name=".ExchangeActivity"
+            android:label="@string/title_activity_exchange" >
+        </activity>
     </application>
 
 </manifest>

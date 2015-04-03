@@ -154,29 +154,29 @@ public class MainActivity extends ActionBarActivity
         }
 
         private class GetCurrencies extends AsyncTask<Void, Void, Void> {
-            private ArrayList<Market> marketList;
+            private ArrayList<Exchange> exchangeList;
             private Context localContext = getActivity().getApplicationContext();
 
             @Override
             protected Void doInBackground(Void... arg0) {
-                TickerServiceHandler tsh = new TickerServiceHandler();
-                marketList = tsh.getCurrencyList();
+                DataServiceHandler tsh = new DataServiceHandler();
+                exchangeList = tsh.getExchageList();
                 return null;
             }
 
             @Override
             protected void onPostExecute(Void result) {
-                ListAdapter adapter = new MarketListAdapter(
+                ListAdapter adapter = new ExchangeListAdapter(
                         localContext,
                         R.layout.market_list_row,
-                        marketList);
+                        exchangeList);
 
                 currencyLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-                        Intent intent = new Intent(localContext, MarketActivity.class);
-                        startActivity(intent);
+                       /* Intent intent = new Intent(localContext, MarketActivity.class);
+                        startActivity(intent); */
                     }
                 });
 

@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity$PlaceholderFragment"
     android:orientation="vertical"
-    android:background="@color/accent_material_dark">
+    android:background="@color/primary_text_disabled_material_light">
 
     <ListView
         android:layout_width="fill_parent"

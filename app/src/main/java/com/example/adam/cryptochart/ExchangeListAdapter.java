@@ -10,9 +10,9 @@ import android.widget.TextView;
 import java.util.List;
 
 
-public class MarketListAdapter extends ArrayAdapter<Market> {
+public class ExchangeListAdapter extends ArrayAdapter<Exchange> {
     Context context;
-    public MarketListAdapter(Context context, int resource, List<Market> items) {
+    public ExchangeListAdapter(Context context, int resource, List<Exchange> items) {
         super(context, resource, items);
         this.context = context;
     }
@@ -28,14 +28,14 @@ public class MarketListAdapter extends ArrayAdapter<Market> {
             v = vi.inflate(R.layout.market_list_row, null);
         }
 
-        Market c = getItem(position);
-        if(c != null) {
+        Exchange e = getItem(position);
+        if(e != null) {
             //populate the view
             TextView nameTv = (TextView) v.findViewById(R.id.name_tv);
             TextView codeTv = (TextView) v.findViewById(R.id.code_tv);
 
-            nameTv.setText(c.getSymbol());
-            codeTv.setText(c.getVolume());
+            nameTv.setText(e.getName());
+            codeTv.setText(e.getCode());
         }
 
 
