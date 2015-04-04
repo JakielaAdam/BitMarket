@@ -25,7 +25,31 @@ public class ExchangeActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange);
         chart = (LineChart) findViewById(R.id.chart);
-       // new GetHistory().execute();
+        chart.getXAxis().setEnabled(false);
+
+
+       /* Bundle extras = getIntent().getExtras();
+        exchange = extras.getParcelable("exchange"); */
+
+        //populate the graph
+        ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
+        Entry c1e1 = new Entry(100.000f, 0); // 0 == quarter 1
+        Entry c1e2 = new Entry(50.000f, 1);
+        valsComp1.add(c1e1);
+        valsComp1.add(c1e2);
+        LineDataSet setComp1 = new LineDataSet(valsComp1, "Company 1");
+        ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
+        dataSets.add(setComp1);
+        ArrayList<String> xVals = new ArrayList<String>();
+        xVals.add("1.Q"); xVals.add("2.Q"); xVals.add("3.Q"); xVals.add("4.Q");
+
+        LineData data = new LineData(xVals, dataSets);
+        chart.setData(data);
+        chart.invalidate();
+
+
+        //populate other fields
+
     }
 
 
@@ -51,35 +75,4 @@ public class ExchangeActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class GetHistory extends AsyncTask<Void, Void, Void> {
-        private Context localContext = getApplicationContext();
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            exchange.populateHistory(DataServiceHandler.getExchangeHistory(exchange.getUrl()));
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            //populate the chart
-            ArrayList<ExchangeHistory> history = exchange.getHistory();
-            ArrayList<Entry> vals = new ArrayList<Entry>();
-            ArrayList<String> xVals = new ArrayList<String>();
-
-            int x = 0;
-            for(ExchangeHistory eh: history) {
-                float bid = (float) eh.getBid();
-                vals.add(new Entry(bid, x));
-                xVals.add("x");
-                x++;
-            }
-
-            LineDataSet bidDataSet = new LineDataSet(vals, "Bid");
-
-            LineData data = new LineData(xVals, bidDataSet);
-            chart.setData(data);
-            chart.invalidate(); // refresh
-        }
-    }
 }

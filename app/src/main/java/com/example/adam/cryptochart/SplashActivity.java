@@ -1,5 +1,6 @@
 package com.example.adam.cryptochart;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -59,7 +60,7 @@ public class SplashActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            Intent i = new Intent(getApplicationContext(), ExchangeActivity.class);
             i.putParcelableArrayListExtra("exchangeList", exchangeList);
             startActivity(i);
         }

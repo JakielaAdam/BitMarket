@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CryptoChart</string>
+    <string name="app_name">BitMarket</string>
 
     <string name="title_section1">Markets Data</string>
     <string name="title_section2">Weighted Prices</string>

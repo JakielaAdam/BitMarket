@@ -32,10 +32,10 @@ public class ExchangeListAdapter extends ArrayAdapter<Exchange> {
         if(e != null) {
             //populate the view
             TextView nameTv = (TextView) v.findViewById(R.id.name_tv);
-            TextView codeTv = (TextView) v.findViewById(R.id.code_tv);
+            TextView priceTv = (TextView) v.findViewById(R.id.price_tv);
 
-            nameTv.setText(e.getName());
-            codeTv.setText(e.getCode());
+            nameTv.setText(e.getCode());
+            priceTv.setText("24 hr: " + Double.toString(e.getAvg24hr()));
         }
 
 
