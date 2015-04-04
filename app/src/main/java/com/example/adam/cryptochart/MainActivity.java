@@ -140,7 +140,7 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             currencyLv = (ListView) rootView.findViewById(R.id.quote_lv);
-            new GetCurrencies().execute();
+            new GetExchanges().execute();
 
 
             return rootView;
@@ -153,7 +153,7 @@ public class MainActivity extends ActionBarActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
 
-        private class GetCurrencies extends AsyncTask<Void, Void, Void> {
+        private class GetExchanges extends AsyncTask<Void, Void, Void> {
             private ArrayList<Exchange> exchangeList;
             private Context localContext = getActivity().getApplicationContext();
 
@@ -175,8 +175,8 @@ public class MainActivity extends ActionBarActivity
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-                       /* Intent intent = new Intent(localContext, MarketActivity.class);
-                        startActivity(intent); */
+                       Intent intent = new Intent(localContext, ExchangeActivity.class);
+                       startActivity(intent);
                     }
                 });
 

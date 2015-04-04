@@ -1,17 +1,31 @@
 package com.example.adam.cryptochart;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
+import java.util.ArrayList;
+
 
 public class ExchangeActivity extends ActionBarActivity {
+
+    private Exchange exchange;
+    private LineChart chart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange);
+        chart = (LineChart) findViewById(R.id.chart);
+       // new GetHistory().execute();
     }
 
 
@@ -35,5 +49,37 @@ public class ExchangeActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class GetHistory extends AsyncTask<Void, Void, Void> {
+        private Context localContext = getApplicationContext();
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            exchange.populateHistory(DataServiceHandler.getExchangeHistory(exchange.getUrl()));
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            //populate the chart
+            ArrayList<ExchangeHistory> history = exchange.getHistory();
+            ArrayList<Entry> vals = new ArrayList<Entry>();
+            ArrayList<String> xVals = new ArrayList<String>();
+
+            int x = 0;
+            for(ExchangeHistory eh: history) {
+                float bid = (float) eh.getBid();
+                vals.add(new Entry(bid, x));
+                xVals.add("x");
+                x++;
+            }
+
+            LineDataSet bidDataSet = new LineDataSet(vals, "Bid");
+
+            LineData data = new LineData(xVals, bidDataSet);
+            chart.setData(data);
+            chart.invalidate(); // refresh
+        }
     }
 }

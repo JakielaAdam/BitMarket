@@ -1,11 +1,14 @@
 package com.example.adam.cryptochart;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 /**
  * Created by Adam on 4/3/2015.
  */
-public class Exchange {
+public class Exchange implements Parcelable{
 
     public String code;
     public String name;
@@ -33,8 +36,10 @@ public class Exchange {
         history = new ArrayList<>();
     }
 
-    public void populateHistory() {
 
+    public void populateHistory(ArrayList<ExchangeHistory> history) {
+        for(ExchangeHistory eh: history)
+            this.history.add(new ExchangeHistory(eh));
     }
 
     public String getCode() {
@@ -75,5 +80,48 @@ public class Exchange {
 
     public String getUrl() {
         return url;
+    }
+
+    // 99.9% of the time you can just ignore this
+    public int describeContents() {
+        return 0;
+    }
+
+    // write your object's data to the passed-in Parcel
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(code);
+        out.writeString(name);
+        out.writeString(updatedAt);
+        out.writeString(url);
+        out.writeDouble(ask);
+        out.writeDouble(bid);
+        out.writeDouble(last);
+        out.writeDouble(vol);
+        out.writeList(history);
+    }
+
+    // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
+    public static final Parcelable.Creator<Exchange> CREATOR = new Parcelable.Creator<Exchange>() {
+        public Exchange createFromParcel(Parcel in) {
+            return new Exchange(in);
+        }
+
+        public Exchange[] newArray(int size) {
+            return new Exchange[size];
+        }
+    };
+
+    // example constructor that takes a Parcel and gives you an object populated with it's values
+    private Exchange(Parcel in) {
+        code = in.readString();
+        name = in.readString();
+        updatedAt = in.readString();
+        url = in.readString();
+        ask = in.readDouble();
+        bid = in.readDouble();
+        last = in.readDouble();
+        vol = in.readDouble();
+        history = in.readArrayList(null);
+
     }
 }
