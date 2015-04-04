@@ -60,7 +60,7 @@ public class SplashActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            Intent i = new Intent(getApplicationContext(), ExchangeActivity.class);
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
             i.putParcelableArrayListExtra("exchangeList", exchangeList);
             startActivity(i);
         }

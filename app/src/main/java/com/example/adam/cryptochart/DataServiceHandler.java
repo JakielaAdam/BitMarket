@@ -20,13 +20,13 @@ import org.json.JSONException;
 public class DataServiceHandler {
 
     private static String[] URLS = {
-        "http://www.quandl.com/api/v1/datasets/BAVERAGE/USD.json?rows=",
-        "http://www.quandl.com/api/v1/datasets/BCHARTS/BITSTAMPUSD.json?rows=",
-        "http://www.quandl.com/api/v1/datasets/BCHARTS/BTCEUSD.json?rows=",
-        "http://www.quandl.com/api/v1/datasets/BCHARTS/BITFINEXUSD.json?rows=",
-        "http://www.quandl.com/api/v1/datasets/BCHARTS/LAKEUSD.json?rows=",
-        "http://www.quandl.com/api/v1/datasets/BCHARTS/HITBTCUSD.json?rows=",
-        "http://www.quandl.com/api/v1/datasets/BCHARTS/ITBITUSD.json?rows="  };
+        "http://www.quandl.com/api/v1/datasets/BAVERAGE/USD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+        "http://www.quandl.com/api/v1/datasets/BCHARTS/BITSTAMPUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+        "http://www.quandl.com/api/v1/datasets/BCHARTS/BTCEUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+        "http://www.quandl.com/api/v1/datasets/BCHARTS/BITFINEXUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+        "http://www.quandl.com/api/v1/datasets/BCHARTS/LAKEUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+        "http://www.quandl.com/api/v1/datasets/BCHARTS/HITBTCUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+        "http://www.quandl.com/api/v1/datasets/BCHARTS/ITBITUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="  };
 
     public DataServiceHandler() {
 
@@ -34,6 +34,7 @@ public class DataServiceHandler {
 
     public ArrayList<Exchange> getExchageList() {
         ArrayList<Exchange> exchangeList = new ArrayList<>();
+
 
         for(int i = 0; i < URLS.length; i++) {
             String exchangeJSON = requestJSON(URLS[i] + "1");
@@ -57,6 +58,8 @@ public class DataServiceHandler {
                     double last = data2.getDouble(4);
                     double vol = data2.getDouble(5);
 
+
+
                     String url = URLS[i];
                     Exchange e = new Exchange(
                             code, name, date, avg24hr, ask,
@@ -75,6 +78,7 @@ public class DataServiceHandler {
         return exchangeList;
     }
 
+    //GET RID OF THIS
     public static ArrayList<ExchangeHistory> getExchangeHistory(String url) {
         ArrayList<ExchangeHistory> history = new ArrayList<>();
         String exchangeJSON = requestJSON(url + "200");
@@ -83,6 +87,7 @@ public class DataServiceHandler {
             try {
                 JSONObject obj = new JSONObject(exchangeJSON);
                 JSONArray data = obj.getJSONArray("data");
+
 
                 for(int i = 0; i < data.length(); i++) {
                     JSONArray data2 = data.getJSONArray(i);

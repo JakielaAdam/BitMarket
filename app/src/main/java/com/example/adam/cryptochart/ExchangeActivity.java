@@ -1,9 +1,13 @@
 package com.example.adam.cryptochart;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,33 +23,24 @@ public class ExchangeActivity extends ActionBarActivity {
 
     private Exchange exchange;
     private LineChart chart;
+    private ArrayList<ExchangeHistory> history;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange);
         chart = (LineChart) findViewById(R.id.chart);
-        chart.getXAxis().setEnabled(false);
+        //chart.getXAxis().setEnabled(false);
+        chart.setBackgroundColor(Color.rgb(1, 87, 155));
+        chart.setNoDataTextDescription("Loading data");
+
+        chart.setBorderColor(Color.rgb(77, 208, 225));
 
 
-       /* Bundle extras = getIntent().getExtras();
-        exchange = extras.getParcelable("exchange"); */
+        Bundle extras = getIntent().getExtras();
+        exchange = extras.getParcelable("exchange");
+        new GetHistory().execute();
 
-        //populate the graph
-        ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
-        Entry c1e1 = new Entry(100.000f, 0); // 0 == quarter 1
-        Entry c1e2 = new Entry(50.000f, 1);
-        valsComp1.add(c1e1);
-        valsComp1.add(c1e2);
-        LineDataSet setComp1 = new LineDataSet(valsComp1, "Company 1");
-        ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
-        dataSets.add(setComp1);
-        ArrayList<String> xVals = new ArrayList<String>();
-        xVals.add("1.Q"); xVals.add("2.Q"); xVals.add("3.Q"); xVals.add("4.Q");
-
-        LineData data = new LineData(xVals, dataSets);
-        chart.setData(data);
-        chart.invalidate();
 
 
         //populate other fields
@@ -75,4 +70,38 @@ public class ExchangeActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class GetHistory extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            history = DataServiceHandler.getExchangeHistory(exchange.getUrl());
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            //populate the graph
+            ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
+            ArrayList<String> xVals = new ArrayList<String>();
+
+            for(int x = 0; x < history.size(); x++) {
+                ExchangeHistory eh = history.get(x);
+                Entry e = new Entry((float) eh.getBid(), x);
+                Log.e("ExchangeActivity", Double.toString(eh.getBid()));
+                valsComp1.add(e);
+                xVals.add(eh.getDate());
+            }
+
+
+            LineDataSet setComp1 = new LineDataSet(valsComp1, exchange.getName());
+            ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
+            dataSets.add(setComp1);
+
+
+            LineData data = new LineData(xVals, dataSets);
+            chart.setData(data);
+            chart.invalidate();
+        }
+    }
 }

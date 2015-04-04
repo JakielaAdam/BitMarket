@@ -3,6 +3,7 @@ package com.example.adam.cryptochart;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -33,7 +34,6 @@ public class Exchange implements Parcelable{
         this.vol = vol;
         this.url = url;
 
-        history = new ArrayList<>();
     }
 
 
@@ -42,14 +42,15 @@ public class Exchange implements Parcelable{
             this.history.add(new ExchangeHistory(eh));
     }
 
-    /*
+
     public double getOneDayChg() {
         double change = 0;
         double priceToday = history.get(0).getAvg24hr();
         double priceYesterday = history.get(1).getAvg24hr();
-
+        change = (priceToday / (priceToday - priceYesterday)) * 100;
+        return change;
     }
-    */
+
 
 
     public String getCode() {

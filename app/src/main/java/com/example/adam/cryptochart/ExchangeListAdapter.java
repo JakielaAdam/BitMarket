@@ -35,7 +35,7 @@ public class ExchangeListAdapter extends ArrayAdapter<Exchange> {
             TextView priceTv = (TextView) v.findViewById(R.id.price_tv);
 
             nameTv.setText(e.getCode());
-            priceTv.setText("24 hr: " + Double.toString(e.getAvg24hr()));
+            //priceTv.setText("24 hr chg: " + Double.toString(e.getOneDayChg()));
         }
 
 
