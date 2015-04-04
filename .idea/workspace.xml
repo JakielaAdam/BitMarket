@@ -43,13 +43,29 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2263" max-vertical-offset="2975">
-              <caret line="167" column="55" selection-start-line="167" selection-start-column="55" selection-end-line="167" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="104" max-vertical-offset="2890">
+              <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
               <folding>
-                <element signature="e#5917#6308#0" expanded="true" />
-                <element signature="e#6289#6290#0" expanded="true" />
+                <element signature="e#2346#2380#0" expanded="true" />
+                <element signature="e#2450#2484#0" expanded="true" />
+                <element signature="e#2554#2588#0" expanded="true" />
+                <element signature="e#5335#5700#0" expanded="true" />
+                <element signature="e#5685#5686#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_main.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -68,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SplashActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SplashActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/SplashActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78044283" vertical-offset="444" max-vertical-offset="1054">
-              <caret line="62" column="14" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="444" max-vertical-offset="1054">
+              <caret line="62" column="72" selection-start-line="62" selection-start-column="72" selection-end-line="62" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -85,18 +101,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_splash.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="activity_splash.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
           <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
               <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-              <folding>
-                <element signature="e#572#593#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
           <provider selected="true" editor-type-id="android-designer">
             <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.04" vertical-offset="0" max-vertical-offset="476">
+              <caret line="3" column="55" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -1340,7 +1364,6 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/Currency.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/TickerServiceHandler.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/currency_list_row.xml" />
@@ -1354,13 +1377,14 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_exchange.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/DataServiceHandler.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/ExchangeHistory.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/Exchange.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/ExchangeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash2.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/SplashActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" />
       </list>
     </option>
   </component>
@@ -1827,8 +1851,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3145">
           <caret line="170" column="6" selection-start-line="170" selection-start-column="6" selection-end-line="170" selection-end-column="6" />
           <folding>
-            <element signature="e#5917#6308#0" expanded="true" />
-            <element signature="e#6289#6290#0" expanded="true" />
+            <element signature="e#2346#2380#0" expanded="true" />
+            <element signature="e#2450#2484#0" expanded="true" />
+            <element signature="e#2554#2588#0" expanded="true" />
+            <element signature="e#5335#5700#0" expanded="true" />
+            <element signature="e#5685#5686#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1900,8 +1927,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3077">
           <caret line="140" column="71" selection-start-line="140" selection-start-column="71" selection-end-line="140" selection-end-column="71" />
           <folding>
-            <element signature="e#5917#6308#0" expanded="true" />
-            <element signature="e#6289#6290#0" expanded="true" />
+            <element signature="e#2346#2380#0" expanded="true" />
+            <element signature="e#2450#2484#0" expanded="true" />
+            <element signature="e#2554#2588#0" expanded="true" />
+            <element signature="e#5335#5700#0" expanded="true" />
+            <element signature="e#5685#5686#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1970,8 +2000,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="2363">
           <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding>
-            <element signature="e#5917#6308#0" expanded="true" />
-            <element signature="e#6289#6290#0" expanded="true" />
+            <element signature="e#2346#2380#0" expanded="true" />
+            <element signature="e#2450#2484#0" expanded="true" />
+            <element signature="e#2554#2588#0" expanded="true" />
+            <element signature="e#5335#5700#0" expanded="true" />
+            <element signature="e#5685#5686#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2027,8 +2060,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2635">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#5917#6308#0" expanded="true" />
-            <element signature="e#6289#6290#0" expanded="true" />
+            <element signature="e#2346#2380#0" expanded="true" />
+            <element signature="e#2450#2484#0" expanded="true" />
+            <element signature="e#2554#2588#0" expanded="true" />
+            <element signature="e#5335#5700#0" expanded="true" />
+            <element signature="e#5685#5686#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2078,13 +2114,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4" vertical-offset="51" max-vertical-offset="391">
-          <caret line="8" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="442">
@@ -2131,17 +2160,6 @@
           <caret line="205" column="33" selection-start-line="205" selection-start-column="33" selection-end-line="205" selection-end-column="33" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_market.xml">
@@ -2235,36 +2253,56 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-          <folding>
-            <element signature="e#572#593#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2263" max-vertical-offset="2975">
-          <caret line="167" column="55" selection-start-line="167" selection-start-column="55" selection-end-line="167" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="104" max-vertical-offset="2890">
+          <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
           <folding>
-            <element signature="e#5917#6308#0" expanded="true" />
-            <element signature="e#6289#6290#0" expanded="true" />
+            <element signature="e#2346#2380#0" expanded="true" />
+            <element signature="e#2450#2484#0" expanded="true" />
+            <element signature="e#2554#2588#0" expanded="true" />
+            <element signature="e#5335#5700#0" expanded="true" />
+            <element signature="e#5685#5686#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/adam/cryptochart/SplashActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78044283" vertical-offset="444" max-vertical-offset="1054">
-          <caret line="62" column="14" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="444" max-vertical-offset="1054">
+          <caret line="62" column="72" selection-start-line="62" selection-start-column="72" selection-end-line="62" selection-end-column="72" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.04" vertical-offset="0" max-vertical-offset="476">
+          <caret line="3" column="55" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>

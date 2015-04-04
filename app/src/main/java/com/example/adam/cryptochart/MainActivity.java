@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -35,6 +36,8 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
+    private static ArrayList<Exchange> exchangeList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,10 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        Bundle extras = getIntent().getExtras();
+        exchangeList  = extras.getParcelableArrayList("exchangeList");
+
     }
 
     @Override
@@ -72,6 +79,7 @@ public class MainActivity extends ActionBarActivity
                 break;
         }
     }
+
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
@@ -140,7 +148,26 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             currencyLv = (ListView) rootView.findViewById(R.id.quote_lv);
-            new GetExchanges().execute();
+            final Context localContext = getActivity().getApplicationContext();
+
+
+
+            ListAdapter adapter = new ExchangeListAdapter(
+                    localContext,
+                    R.layout.market_list_row,
+                    exchangeList);
+
+            currencyLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    Intent intent = new Intent(localContext, ExchangeActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+
+            currencyLv.setAdapter(adapter);
 
 
             return rootView;
@@ -153,36 +180,5 @@ public class MainActivity extends ActionBarActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
 
-        private class GetExchanges extends AsyncTask<Void, Void, Void> {
-            private ArrayList<Exchange> exchangeList;
-            private Context localContext = getActivity().getApplicationContext();
-
-            @Override
-            protected Void doInBackground(Void... arg0) {
-                DataServiceHandler tsh = new DataServiceHandler();
-                exchangeList = tsh.getExchageList();
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void result) {
-                ListAdapter adapter = new ExchangeListAdapter(
-                        localContext,
-                        R.layout.market_list_row,
-                        exchangeList);
-
-                currencyLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
-                                            int position, long id) {
-                       Intent intent = new Intent(localContext, ExchangeActivity.class);
-                       startActivity(intent);
-                    }
-                });
-
-
-                currencyLv.setAdapter(adapter);
-            }
-        }
     }
 }
