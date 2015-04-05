@@ -3,9 +3,6 @@ package com.example.adam.cryptochart;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -242,7 +238,7 @@ public class MainActivity extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.activity_bitcoin, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_bitcoin, container, false);
 
 
             return rootView;
@@ -322,7 +318,7 @@ public class MainActivity extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.activity_mining_info, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_mining_info, container, false);
 
 
             return rootView;
@@ -362,7 +358,7 @@ public class MainActivity extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.activity_about, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_about, container, false);
 
 
             return rootView;

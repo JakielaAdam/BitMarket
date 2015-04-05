@@ -28,6 +28,8 @@ public class DataServiceHandler {
         "http://www.quandl.com/api/v1/datasets/BCHARTS/HITBTCUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
         "http://www.quandl.com/api/v1/datasets/BCHARTS/ITBITUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="  };
 
+    public static final String HISTORY_MAX = "200";
+
     public DataServiceHandler() {
 
     }
@@ -78,10 +80,9 @@ public class DataServiceHandler {
         return exchangeList;
     }
 
-    //GET RID OF THIS
     public static ArrayList<ExchangeHistory> getExchangeHistory(String url) {
         ArrayList<ExchangeHistory> history = new ArrayList<>();
-        String exchangeJSON = requestJSON(url + "200");
+        String exchangeJSON = requestJSON(url + HISTORY_MAX);
         //parse currency JSON here
         if (exchangeJSON != null) {
             try {
@@ -131,6 +132,38 @@ public class DataServiceHandler {
             e.printStackTrace();
         }
         return response;
+    }
+
+    public static ArrayList<DataSet> getDataSets(String[] urls) {
+        ArrayList<DataSet> dataSets = new ArrayList<>();
+
+        for(int x = 0; x < urls.length; x++) {
+            ArrayList<DataPoint> dataPoints = new ArrayList<>();
+            String jsonResponse = requestJSON(URLS[x] + HISTORY_MAX);
+
+            if (jsonResponse != null) {
+                try {
+                    JSONObject obj = new JSONObject(jsonResponse);
+                    String title = obj.getString("name");
+                    JSONArray data = obj.getJSONArray("data");
+
+
+                    for(int i = 0; i < data.length(); i++) {
+                        JSONArray data2 = data.getJSONArray(i);
+                        String date = data2.getString(0);
+                        long value = data2.getLong(1);
+                        dataPoints.add(new DataPoint(date, value));
+                    }
+
+                    dataSets.add(new DataSet(title, dataPoints));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.e("TicketServiceHandle", "No currencies found from url.");
+            }
+        }
+        return dataSets;
     }
 }
 
