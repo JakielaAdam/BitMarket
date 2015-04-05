@@ -3,6 +3,7 @@ package com.example.adam.cryptochart;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -35,6 +36,11 @@ public class MainActivity extends ActionBarActivity
     private CharSequence mTitle;
 
     private static ArrayList<Exchange> exchangeList;
+
+    private static final String[] ACTIVITY_URLS = {
+            "http://www.quandl.com/api/v1/datasets/BCHAIN/ETRAV.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+            "http://www.quandl.com/api/v1/datasets/BCHAIN/TRVOU.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,6 +225,8 @@ public class MainActivity extends ActionBarActivity
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private ArrayList<DataSet> dataSets;
+        private ListView lv;
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -239,7 +247,8 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_bitcoin, container, false);
-
+            lv = (ListView) rootView.findViewById(R.id.data_set_list_view);
+            new GetActivityData().execute();
 
             return rootView;
         }
@@ -251,6 +260,26 @@ public class MainActivity extends ActionBarActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
 
+        private class GetActivityData extends AsyncTask<Void, Void, Void> {
+            private ArrayList<Exchange> exchangeList;
+
+            @Override
+            protected Void doInBackground(Void... arg0) {
+                dataSets = DataServiceHandler.getDataSets(ACTIVITY_URLS);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                final Context localContext = getActivity().getApplicationContext();
+                ListAdapter adapter = new DataSetListAdapter(
+                        localContext,
+                        R.layout.data_list_row,
+                        dataSets);
+
+                lv.setAdapter(adapter);
+            }
+        }
     }
 
     public static class TransactionsFragment extends Fragment {
