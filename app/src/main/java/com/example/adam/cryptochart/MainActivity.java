@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +41,18 @@ public class MainActivity extends ActionBarActivity
     private static final String[] ACTIVITY_URLS = {
             "http://www.quandl.com/api/v1/datasets/BCHAIN/ETRAV.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
             "http://www.quandl.com/api/v1/datasets/BCHAIN/TRVOU.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="
+    };
+
+    private static final String[] TRANSACTION_FEES_URLS = {
+            "http://www.quandl.com/api/v1/datasets/BCHAIN/TRFEE.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+            "http://www.quandl.com/api/v1/datasets/BCHAIN/TRFUS.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+            "http://www.quandl.com/api/v1/datasets/BCHAIN/CPTRA.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="
+    };
+
+    private static final String[] MINING_INFO_URLS = {
+            "http://www.quandl.com/api/v1/datasets/BCHAIN/BLCHS.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+            "http://www.quandl.com/api/v1/datasets/BCHAIN/AVBLS.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
+            "http://www.quandl.com/api/v1/datasets/BCHAIN/TOUTV.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="
     };
 
     @Override
@@ -74,21 +87,29 @@ public class MainActivity extends ActionBarActivity
                     .commit();
                 break;
             case 1:
+                //activity
+                Log.d("MAIN", "ActivityFragment");
                 fragmentManager.beginTransaction()
                     .replace(R.id.container, ActivityFragment.newInstance(position + 1))
                     .commit();
                 break;
             case 2:
+                //transaction fees
+                Log.d("MAIN", "TransactionsFragment");
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, TransactionsFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 3:
+                //mining info
+                Log.d("MAIN", "MiningInfoFragment");
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, MiningInfoFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 4:
+                //about
+                Log.d("MAIN", "AboutFragment");
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, AboutFragment.newInstance(position + 1))
                         .commit();
@@ -225,8 +246,9 @@ public class MainActivity extends ActionBarActivity
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-        private ArrayList<DataSet> dataSets;
+
         private ListView lv;
+
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -261,7 +283,7 @@ public class MainActivity extends ActionBarActivity
         }
 
         private class GetActivityData extends AsyncTask<Void, Void, Void> {
-            private ArrayList<Exchange> exchangeList;
+            private ArrayList<DataSet> dataSets;
 
             @Override
             protected Void doInBackground(Void... arg0) {
@@ -289,6 +311,9 @@ public class MainActivity extends ActionBarActivity
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
+
+        private ListView lv;
+
         /**
          * Returns a new instance of this fragment for the given section
          * number.
@@ -308,7 +333,8 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.activity_transaction_fees, container, false);
-
+            lv = (ListView) rootView.findViewById(R.id.transaction_fees_list_view);
+            new GetTransactionData().execute();
 
             return rootView;
         }
@@ -320,6 +346,27 @@ public class MainActivity extends ActionBarActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
 
+        private class GetTransactionData extends AsyncTask<Void, Void, Void> {
+            private ArrayList<DataSet> dataSets;
+
+            @Override
+            protected Void doInBackground(Void... arg0) {
+                dataSets = DataServiceHandler.getDataSets(TRANSACTION_FEES_URLS);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                final Context localContext = getActivity().getApplicationContext();
+                ListAdapter adapter = new DataSetListAdapter(
+                        localContext,
+                        R.layout.data_list_row,
+                        dataSets);
+
+                lv.setAdapter(adapter);
+            }
+        }
+
     }
 
     public static class MiningInfoFragment extends Fragment {
@@ -328,6 +375,7 @@ public class MainActivity extends ActionBarActivity
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private ListView lv;
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -348,7 +396,8 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_mining_info, container, false);
-
+            lv = (ListView) rootView.findViewById(R.id.mining_info_list_view);
+            new GetMiningData().execute();
 
             return rootView;
         }
@@ -358,6 +407,27 @@ public class MainActivity extends ActionBarActivity
             super.onAttach(activity);
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
+        }
+
+        private class GetMiningData extends AsyncTask<Void, Void, Void> {
+            private ArrayList<DataSet> dataSets;
+
+            @Override
+            protected Void doInBackground(Void... arg0) {
+                dataSets = DataServiceHandler.getDataSets(MINING_INFO_URLS);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                final Context localContext = getActivity().getApplicationContext();
+                ListAdapter adapter = new DataSetListAdapter(
+                        localContext,
+                        R.layout.data_list_row,
+                        dataSets);
+
+                lv.setAdapter(adapter);
+            }
         }
 
     }

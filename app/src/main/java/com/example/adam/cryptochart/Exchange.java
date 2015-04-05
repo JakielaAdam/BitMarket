@@ -42,7 +42,7 @@ public class Exchange implements Parcelable{
             this.history.add(new ExchangeHistory(eh));
     }
 
-
+    //TODO
     public double getOneDayChg() {
         double change = 0;
         double priceToday = history.get(0).getAvg24hr();

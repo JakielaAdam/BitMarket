@@ -28,7 +28,7 @@ public class DataServiceHandler {
         "http://www.quandl.com/api/v1/datasets/BCHARTS/HITBTCUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
         "http://www.quandl.com/api/v1/datasets/BCHARTS/ITBITUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="  };
 
-    public static final String HISTORY_MAX = "200";
+    public static final String HISTORY_MAX = "100";
 
     public DataServiceHandler() {
 
@@ -139,7 +139,7 @@ public class DataServiceHandler {
 
         for(int x = 0; x < urls.length; x++) {
             ArrayList<DataPoint> dataPoints = new ArrayList<>();
-            String jsonResponse = requestJSON(URLS[x] + HISTORY_MAX);
+            String jsonResponse = requestJSON(urls[x] + HISTORY_MAX);
 
             if (jsonResponse != null) {
                 try {
