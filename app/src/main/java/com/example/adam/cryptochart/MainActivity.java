@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -166,9 +168,6 @@ public class MainActivity extends ActionBarActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -252,6 +251,8 @@ public class MainActivity extends ActionBarActivity
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         private ListView lv;
+        private ProgressBar pb;
+        private TextView tv;
 
 
         /**
@@ -274,6 +275,8 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_bitcoin, container, false);
             lv = (ListView) rootView.findViewById(R.id.data_set_list_view);
+            pb = (ProgressBar) rootView.findViewById(R.id.activity_pb);
+            lv.setVisibility(View.INVISIBLE);
             new GetActivityData().execute();
 
             return rootView;
@@ -304,6 +307,8 @@ public class MainActivity extends ActionBarActivity
                         dataSets);
 
                 lv.setAdapter(adapter);
+                pb.setVisibility(View.GONE);
+                lv.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -317,6 +322,7 @@ public class MainActivity extends ActionBarActivity
 
 
         private ListView lv;
+        private ProgressBar pb;
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -338,6 +344,8 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_transaction_fees, container, false);
             lv = (ListView) rootView.findViewById(R.id.transaction_fees_list_view);
+            pb = (ProgressBar) rootView.findViewById(R.id.transaction_fees__pb);
+            lv.setVisibility(View.INVISIBLE);
             new GetTransactionData().execute();
 
             return rootView;
@@ -368,6 +376,8 @@ public class MainActivity extends ActionBarActivity
                         dataSets);
 
                 lv.setAdapter(adapter);
+                pb.setVisibility(View.GONE);
+                lv.setVisibility(View.VISIBLE);
             }
         }
 
@@ -380,6 +390,7 @@ public class MainActivity extends ActionBarActivity
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
         private ListView lv;
+        private ProgressBar pb;
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -401,6 +412,8 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_mining_info, container, false);
             lv = (ListView) rootView.findViewById(R.id.mining_info_list_view);
+            pb = (ProgressBar) rootView.findViewById(R.id.mining_info_pb);
+            lv.setVisibility(View.INVISIBLE);
             new GetMiningData().execute();
 
             return rootView;
@@ -431,6 +444,8 @@ public class MainActivity extends ActionBarActivity
                         dataSets);
 
                 lv.setAdapter(adapter);
+                pb.setVisibility(View.GONE);
+                lv.setVisibility(View.VISIBLE);
             }
         }
 

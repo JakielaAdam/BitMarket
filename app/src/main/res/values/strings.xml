@@ -12,8 +12,10 @@
 
     <string name="action_example">Example action</string>
 
-    <string name="action_settings">Settings</string>
     <string name="title_activity_market">MarketActivity</string>
+
+    <string name="about">Created by Adam Jakiela.</string>
+    <string name="about2">Data provided by quandl.com</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_exchange">ExchangeActivity</string>
