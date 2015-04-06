@@ -28,6 +28,7 @@ public class SplashActivity extends ActionBarActivity {
         Typeface starAvenue = Typeface.createFromAsset(getAssets(), "fonts/staravenue.ttf");
         splashTv.setTypeface(starAvenue);
         new GetExchanges().execute();
+
     }
 
 

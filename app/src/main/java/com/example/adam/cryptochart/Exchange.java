@@ -6,9 +6,7 @@ import android.os.Parcelable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-/**
- * Created by Adam on 4/3/2015.
- */
+
 public class Exchange implements Parcelable{
 
     public String code;
@@ -20,10 +18,11 @@ public class Exchange implements Parcelable{
     public double last;
     public double vol;
     public String url;
+    public double oneDayChng;
 
     public ArrayList<ExchangeHistory> history;
 
-    public Exchange(String code, String name, String updatedAt, double avg24hr, double ask, double bid, double last, double vol, String url) {
+    public Exchange(String code, String name, String updatedAt, double avg24hr, double ask, double bid, double last, double vol, String url, double oneDayChng) {
         this.code = code;
         this.name = name;
         this.updatedAt = updatedAt;
@@ -33,6 +32,7 @@ public class Exchange implements Parcelable{
         this.last = last;
         this.vol = vol;
         this.url = url;
+        this.oneDayChng = oneDayChng;
 
     }
 
@@ -41,17 +41,6 @@ public class Exchange implements Parcelable{
         for(ExchangeHistory eh: history)
             this.history.add(new ExchangeHistory(eh));
     }
-
-    //TODO
-    public double getOneDayChg() {
-        double change = 0;
-        double priceToday = history.get(0).getAvg24hr();
-        double priceYesterday = history.get(1).getAvg24hr();
-        change = (priceToday / (priceToday - priceYesterday)) * 100;
-        return change;
-    }
-
-
 
     public String getCode() {
         return code;
@@ -67,6 +56,10 @@ public class Exchange implements Parcelable{
 
     public double getAvg24hr() {
         return avg24hr;
+    }
+
+    public double getOneDayChng() {
+        return oneDayChng;
     }
 
     public double getAsk() {

@@ -39,7 +39,7 @@ public class DataServiceHandler {
 
 
         for(int i = 0; i < URLS.length; i++) {
-            String exchangeJSON = requestJSON(URLS[i] + "1");
+            String exchangeJSON = requestJSON(URLS[i] + "2");
 
             //parse currency JSON here
             if (exchangeJSON != null) {
@@ -60,12 +60,18 @@ public class DataServiceHandler {
                     double last = data2.getDouble(4);
                     double vol = data2.getDouble(5);
 
+                    JSONArray oldData = data.getJSONArray(1);
+
+                    double oldAsk = oldData.getDouble(2);
+
+                    double oneDayChng = (ask / (ask - oldAsk)) * 100;
+
 
 
                     String url = URLS[i];
                     Exchange e = new Exchange(
                             code, name, date, avg24hr, ask,
-                            bid, last, vol, url);
+                            bid, last, vol, url, oneDayChng);
 
                     exchangeList.add(e);
 

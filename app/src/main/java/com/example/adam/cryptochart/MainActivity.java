@@ -173,6 +173,11 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
