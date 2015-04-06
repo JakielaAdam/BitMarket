@@ -19,29 +19,15 @@
         </activity>
         <activity
             android:name=".SplashActivity"
-            android:label="@string/title_activity_splash" >
+            android:label="@string/title_activity_splash"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".BitcoinActivityActivity"
-            android:label="@string/title_activity_bitcoin" >
-        </activity>
-        <activity
-            android:name=".TransactionFeesActivity"
-            android:label="@string/title_activity_transaction_fees" >
-        </activity>
-        <activity
-            android:name=".MiningInfoActivity"
-            android:label="@string/title_activity_mining_info" >
-        </activity>
-        <activity
-            android:name=".AboutActivity"
-            android:label="@string/title_activity_about" >
-        </activity>
+
     </application>
 
 </manifest>

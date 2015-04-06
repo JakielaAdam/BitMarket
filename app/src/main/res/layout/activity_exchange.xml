@@ -4,66 +4,99 @@
     tools:context="com.example.adam.cryptochart.MarketActivity"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#ee3f3c3e"
+        android:padding="0dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:id="@+id/arrow_image_view"
+            android:padding="10dp"
+            android:layout_weight="0.03"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/name_tv"
+            android:textSize="20dp"
+            android:textColor="#009688"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp" />
+
+    </LinearLayout>
+
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="207dp" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="#ee3f3c3e"
-        android:padding="10dp">
+        android:orientation="vertical"
+        android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/name_tv"
-            android:textSize="30dp"
-            android:textColor="#009688" />
-
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/hr_24_avg_tv"
-            android:textColor="#ffffffff" />
+            android:textColor="#ffffffff"
+            android:gravity="center"
+            android:padding="10dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/bid_tv"
-            android:textColor="#ffffffff" />
+            android:textColor="#ffffffff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:background="#94191a1e" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/ask_tv"
-            android:textColor="#ffffffff" />
+            android:textColor="#ffffffff"
+            android:gravity="center"
+            android:padding="10dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/vol_tv"
-            android:textColor="#ffffffff" />
+            android:textColor="#ffffffff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:background="#94191a1e" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/last_tv"
-            android:textColor="#ffffffff" />
+            android:textColor="#ffffffff"
+            android:gravity="center"
+            android:padding="10dp"/>
 
     </LinearLayout>
 

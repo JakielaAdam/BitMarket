@@ -40,17 +40,20 @@ public class MainActivity extends ActionBarActivity
 
     private static ArrayList<Exchange> exchangeList;
 
+    //URLs used for the Market Activity fragment.
     private static final String[] ACTIVITY_URLS = {
             "http://www.quandl.com/api/v1/datasets/BCHAIN/ETRAV.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
             "http://www.quandl.com/api/v1/datasets/BCHAIN/TRVOU.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="
     };
 
+    //URLs used for the transaction fees fragment.
     private static final String[] TRANSACTION_FEES_URLS = {
             "http://www.quandl.com/api/v1/datasets/BCHAIN/TRFEE.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
             "http://www.quandl.com/api/v1/datasets/BCHAIN/TRFUS.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
             "http://www.quandl.com/api/v1/datasets/BCHAIN/CPTRA.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="
     };
 
+    //URLs used for the mining information fragment.
     private static final String[] MINING_INFO_URLS = {
             "http://www.quandl.com/api/v1/datasets/BCHAIN/BLCHS.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
             "http://www.quandl.com/api/v1/datasets/BCHAIN/TOUTV.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="
@@ -177,9 +180,7 @@ public class MainActivity extends ActionBarActivity
         finish();
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
+    //main fragment displayed at application start.
     public static class MainFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -243,6 +244,7 @@ public class MainActivity extends ActionBarActivity
 
     }
 
+    //fragment which displays Bitcoin market activity.
     public static class ActivityFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -275,8 +277,12 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_bitcoin, container, false);
             lv = (ListView) rootView.findViewById(R.id.data_set_list_view);
+
+            //display the progress bar and hides the list view.
             pb = (ProgressBar) rootView.findViewById(R.id.activity_pb);
             lv.setVisibility(View.INVISIBLE);
+
+            //gets the market activity data.
             new GetActivityData().execute();
 
             return rootView;
@@ -306,6 +312,7 @@ public class MainActivity extends ActionBarActivity
                         R.layout.data_list_row,
                         dataSets);
 
+                //populate and show the list view upon data load.
                 lv.setAdapter(adapter);
                 pb.setVisibility(View.GONE);
                 lv.setVisibility(View.VISIBLE);
@@ -313,6 +320,7 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    //fragment which displays transaction fee information.
     public static class TransactionsFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -383,6 +391,7 @@ public class MainActivity extends ActionBarActivity
 
     }
 
+    //fragment which displayes mining information.
     public static class MiningInfoFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this

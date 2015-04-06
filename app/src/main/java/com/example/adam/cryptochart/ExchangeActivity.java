@@ -1,15 +1,13 @@
 package com.example.adam.cryptochart;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -21,7 +19,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-
+//Displays information about a markets exchange rats.
 public class ExchangeActivity extends ActionBarActivity {
 
     private Exchange exchange;
@@ -34,6 +32,7 @@ public class ExchangeActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange);
 
+        //TextViews which are labels for the market.
         nameTv = (TextView) findViewById(R.id.name_tv);
         hr24Tv = (TextView) findViewById(R.id.hr_24_avg_tv);
         bidTv = (TextView) findViewById(R.id.bid_tv);
@@ -41,11 +40,19 @@ public class ExchangeActivity extends ActionBarActivity {
         lastTv = (TextView) findViewById(R.id.last_tv);
         volTv = (TextView) findViewById(R.id.vol_tv);
 
-
-
+        //Get the Exchange market from the intent.
         Bundle extras = getIntent().getExtras();
         exchange = extras.getParcelable("exchange");
 
+        //Set appropriate arrow depending on market change.
+        ImageView arrowView = (ImageView) findViewById(R.id.arrow_image_view);
+        if(exchange.getOneDayChng() > 0) {
+            arrowView.setImageResource(R.drawable.arrow_up);
+        } else {
+            arrowView.setImageResource(R.drawable.arrow_down);
+        }
+
+        //Set TextViews to values.
         nameTv.setText(exchange.getName());
         hr24Tv.setText("24 hr average: " + exchange.getAvg24hr());
         bidTv.setText("Bid: " + exchange.getBid());
@@ -57,12 +64,16 @@ public class ExchangeActivity extends ActionBarActivity {
         YAxis y = chart.getAxisRight();
         y.setEnabled(false);
 
+        //Style the chart.
         chart.setHighlightEnabled(true);
         chart.setBackgroundColor(Color.rgb(0, 92, 155));
         chart.setNoDataTextDescription("Loading data");
         chart.setBorderColor(Color.rgb(77, 208, 225));
         chart.setDescription(exchange.getName());
 
+        setTitle("Additional Details");
+
+        //Spawn an AsyncTask to get DataPoints for graph.
         new GetHistory().execute();
 
     }
@@ -109,7 +120,7 @@ public class ExchangeActivity extends ActionBarActivity {
                 xVals.add(eh.getDate());
             }
 
-
+            //set parameters for graph.
             LineDataSet setComp1 = new LineDataSet(valsComp1, exchange.getName());
             setComp1.setDrawCubic(true);
             setComp1.setDrawCircles(false);

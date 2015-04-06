@@ -20,6 +20,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+//This adapter is used for displying a DataSet object in a list.
+//It shows the name of the DataSet and a graph of its DataPoints.
 public class DataSetListAdapter extends ArrayAdapter<DataSet> {
     Context context;
     public DataSetListAdapter(Context context, int resource, List<DataSet> items) {
@@ -45,7 +47,7 @@ public class DataSetListAdapter extends ArrayAdapter<DataSet> {
 
             //draw graph
             LineChart chart = (LineChart) v.findViewById(R.id.chart);
-            //chart.getXAxis().setEnabled(false);
+
             YAxis y = chart.getAxisRight();
             y.setEnabled(false);
 
@@ -57,6 +59,7 @@ public class DataSetListAdapter extends ArrayAdapter<DataSet> {
             ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
             ArrayList<String> xVals = new ArrayList<String>();
 
+            //get the datapoints from the object
             ArrayList<DataPoint> dataPoints = ds.getData();
             for(int x = 0; x < dataPoints.size(); x++) {
                 DataPoint dp = dataPoints.get(x);
@@ -65,8 +68,9 @@ public class DataSetListAdapter extends ArrayAdapter<DataSet> {
                 xVals.add(dp.getDate());
             }
 
-
             LineDataSet setComp1 = new LineDataSet(valsComp1, ds.getTitle());
+
+            //set other parameters of the graph.
             setComp1.setDrawCubic(true);
             setComp1.setDrawCircles(false);
             setComp1.setLineWidth(3f);
@@ -77,16 +81,10 @@ public class DataSetListAdapter extends ArrayAdapter<DataSet> {
             ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
             dataSets.add(setComp1);
 
-
             LineData data = new LineData(xVals, dataSets);
             chart.setData(data);
             chart.invalidate();
-
-
-
         }
-
-
         return v;
     }
 }

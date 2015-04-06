@@ -1,5 +1,6 @@
 package com.example.adam.cryptochart;
 
+//Stores a data point which is displayed on the graphs.
 public class DataPoint {
     private String date;
     private long value;

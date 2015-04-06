@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-
+//Stores information about exchange rates of a market.
 public class Exchange implements Parcelable{
 
     public String code;
@@ -22,7 +22,9 @@ public class Exchange implements Parcelable{
 
     public ArrayList<ExchangeHistory> history;
 
-    public Exchange(String code, String name, String updatedAt, double avg24hr, double ask, double bid, double last, double vol, String url, double oneDayChng) {
+    public Exchange(String code, String name, String updatedAt, double avg24hr,
+                    double ask, double bid, double last, double vol, String url,
+                    double oneDayChng) {
         this.code = code;
         this.name = name;
         this.updatedAt = updatedAt;
@@ -34,12 +36,6 @@ public class Exchange implements Parcelable{
         this.url = url;
         this.oneDayChng = oneDayChng;
 
-    }
-
-
-    public void populateHistory(ArrayList<ExchangeHistory> history) {
-        for(ExchangeHistory eh: history)
-            this.history.add(new ExchangeHistory(eh));
     }
 
     public String getCode() {
@@ -86,12 +82,12 @@ public class Exchange implements Parcelable{
         return url;
     }
 
-    // 99.9% of the time you can just ignore this
+
     public int describeContents() {
         return 0;
     }
 
-    // write your object's data to the passed-in Parcel
+    //methods below are responsible for making the class parcelable.
     public void writeToParcel(Parcel out, int flags) {
         out.writeString(code);
         out.writeString(name);
@@ -102,9 +98,10 @@ public class Exchange implements Parcelable{
         out.writeDouble(last);
         out.writeDouble(vol);
         out.writeList(history);
+        out.writeDouble(oneDayChng);
+        out.writeDouble(avg24hr);
     }
 
-    // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
     public static final Parcelable.Creator<Exchange> CREATOR = new Parcelable.Creator<Exchange>() {
         public Exchange createFromParcel(Parcel in) {
             return new Exchange(in);
@@ -115,7 +112,6 @@ public class Exchange implements Parcelable{
         }
     };
 
-    // example constructor that takes a Parcel and gives you an object populated with it's values
     private Exchange(Parcel in) {
         code = in.readString();
         name = in.readString();
@@ -126,6 +122,8 @@ public class Exchange implements Parcelable{
         last = in.readDouble();
         vol = in.readDouble();
         history = in.readArrayList(null);
+        oneDayChng = in.readDouble();
+        avg24hr = in.readDouble();
 
     }
 }

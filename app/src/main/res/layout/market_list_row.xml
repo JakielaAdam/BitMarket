@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
-                android:id="@+id/vol_tv"
+                android:id="@+id/change_tv"
                 android:textSize="18dp" />
             </LinearLayout>
         </LinearLayout>

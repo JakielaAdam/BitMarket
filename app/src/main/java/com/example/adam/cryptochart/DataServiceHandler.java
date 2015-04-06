@@ -17,8 +17,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
+//The DataServiceHandler class is reposible for gathering data from the Quandl database.
 public class DataServiceHandler {
 
+    //URLs used to return exchange rate infromation.
     private static String[] URLS = {
         "http://www.quandl.com/api/v1/datasets/BAVERAGE/USD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
         "http://www.quandl.com/api/v1/datasets/BCHARTS/BITSTAMPUSD.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
@@ -34,14 +36,14 @@ public class DataServiceHandler {
 
     }
 
+    //Query each URL in the URLS array to retrieve exchange rate data.
     public ArrayList<Exchange> getExchageList() {
         ArrayList<Exchange> exchangeList = new ArrayList<>();
-
 
         for(int i = 0; i < URLS.length; i++) {
             String exchangeJSON = requestJSON(URLS[i] + "2");
 
-            //parse currency JSON here
+            //parse exchange JSON here
             if (exchangeJSON != null) {
                 try {
                     JSONObject obj = new JSONObject(exchangeJSON);
@@ -50,8 +52,6 @@ public class DataServiceHandler {
                     String date = obj.getString("updated_at");
 
                     JSONArray data = obj.getJSONArray("data");
-
-
                     JSONArray data2 = data.getJSONArray(0);
 
                     double avg24hr = data2.getDouble(1);
@@ -61,12 +61,10 @@ public class DataServiceHandler {
                     double vol = data2.getDouble(5);
 
                     JSONArray oldData = data.getJSONArray(1);
-
                     double oldAsk = oldData.getDouble(2);
 
-                    double oneDayChng = (ask / (ask - oldAsk)) * 100;
-
-
+                    //computes the percentage change
+                    double oneDayChng = ((ask - oldAsk) / ask) * 100;
 
                     String url = URLS[i];
                     Exchange e = new Exchange(
@@ -86,10 +84,12 @@ public class DataServiceHandler {
         return exchangeList;
     }
 
+    //Get historical information for an exchange rate.
+    //The information gathered here is displayed on the main activity.
     public static ArrayList<ExchangeHistory> getExchangeHistory(String url) {
         ArrayList<ExchangeHistory> history = new ArrayList<>();
         String exchangeJSON = requestJSON(url + HISTORY_MAX);
-        //parse currency JSON here
+        //parse exchange JSON here
         if (exchangeJSON != null) {
             try {
                 JSONObject obj = new JSONObject(exchangeJSON);
@@ -111,11 +111,12 @@ public class DataServiceHandler {
                 e.printStackTrace();
             }
         } else {
-            Log.e("TicketServiceHandle", "No currencies found from url.");
+            Log.e("TicketServiceHandle", "No exchange rates found from url.");
         }
         return history;
     }
 
+    //Uses an HTTP client to communicate with the Quandl server.
     private static String requestJSON(String url) {
         String response = null;
         try {
@@ -140,6 +141,8 @@ public class DataServiceHandler {
         return response;
     }
 
+    //Returns the DataSets associated with an activity.
+    //EX: Mining Information, Transaction Fees, Bitcoin Activity
     public static ArrayList<DataSet> getDataSets(String[] urls) {
         ArrayList<DataSet> dataSets = new ArrayList<>();
 
@@ -166,7 +169,7 @@ public class DataServiceHandler {
                     e.printStackTrace();
                 }
             } else {
-                Log.e("TicketServiceHandle", "No currencies found from url.");
+                Log.e("TicketServiceHandle", "No data found from url.");
             }
         }
         return dataSets;

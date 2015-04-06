@@ -2,6 +2,8 @@ package com.example.adam.cryptochart;
 
 import java.util.ArrayList;
 
+//The DataSet class contains data and the title of a data query such as
+//the transaction fees of bitcoin.
 public class DataSet {
     private String title;
     private ArrayList<DataPoint> data;
