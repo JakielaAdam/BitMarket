@@ -11,5 +11,6 @@
         android:id="@+id/quote_lv"
         android:footerDividersEnabled="false"
         android:divider="@null"
-        android:dividerHeight="0dp" />
+        android:dividerHeight="0dp"
+        android:background="#FFFFFF" />
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.adam.cryptochart;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,9 @@ public class SplashActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         getSupportActionBar().hide();
+        TextView splashTv = (TextView) findViewById(R.id.titleTv);
+        Typeface starAvenue = Typeface.createFromAsset(getAssets(), "fonts/staravenue.ttf");
+        splashTv.setTypeface(starAvenue);
         new GetExchanges().execute();
     }
 

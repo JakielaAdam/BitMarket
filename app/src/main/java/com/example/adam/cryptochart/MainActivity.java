@@ -51,7 +51,6 @@ public class MainActivity extends ActionBarActivity
 
     private static final String[] MINING_INFO_URLS = {
             "http://www.quandl.com/api/v1/datasets/BCHAIN/BLCHS.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
-            "http://www.quandl.com/api/v1/datasets/BCHAIN/AVBLS.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows=",
             "http://www.quandl.com/api/v1/datasets/BCHAIN/TOUTV.json?auth_token=AEVNyGaVAWU4swfqp5zk&rows="
     };
 
@@ -332,7 +331,7 @@ public class MainActivity extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.activity_transaction_fees, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_transaction_fees, container, false);
             lv = (ListView) rootView.findViewById(R.id.transaction_fees_list_view);
             new GetTransactionData().execute();
 

@@ -11,9 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,9 +46,12 @@ public class DataSetListAdapter extends ArrayAdapter<DataSet> {
             //draw graph
             LineChart chart = (LineChart) v.findViewById(R.id.chart);
             //chart.getXAxis().setEnabled(false);
-            chart.setBackgroundColor(Color.rgb(1, 87, 155));
-            chart.setNoDataTextDescription("Loading data");
+            YAxis y = chart.getAxisRight();
+            y.setEnabled(false);
 
+            chart.setHighlightEnabled(true);
+            chart.setBackgroundColor(Color.rgb(0, 92, 155));
+            chart.setNoDataTextDescription("Loading data");
             chart.setBorderColor(Color.rgb(77, 208, 225));
 
             ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
@@ -62,6 +67,13 @@ public class DataSetListAdapter extends ArrayAdapter<DataSet> {
 
 
             LineDataSet setComp1 = new LineDataSet(valsComp1, ds.getTitle());
+            setComp1.setDrawCubic(true);
+            setComp1.setDrawCircles(false);
+            setComp1.setLineWidth(3f);
+            setComp1.setHighLightColor(Color.rgb(244, 117, 117));
+            setComp1.setColor(Color.rgb(104, 241, 175));
+            setComp1.setFillColor(ColorTemplate.getHoloBlue());
+            setComp1.setDrawFilled(true);
             ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
             dataSets.add(setComp1);
 

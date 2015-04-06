@@ -2,7 +2,7 @@
     <string name="app_name">BitMarket</string>
 
     <string name="title_section1">Exchange Rates</string>
-    <string name="title_section2">Activity</string>
+    <string name="title_section2">Market Activity</string>
     <string name="title_section3">Transaction Fees</string>
     <string name="title_section4">Mining Info</string>
     <string name="title_section5">About</string>
